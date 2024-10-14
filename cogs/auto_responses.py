@@ -26,7 +26,9 @@ class AutoResponsesCog(commands.Cog):
         # Dictionnary for different automatic responses based on keywords
         response_dict={
             'bibble':'Tu le préfères à moi, pas vrai...?',
-            'salut':"Bonjour {mention} !"
+            'salut':"Bonjour {mention} !",
+            ':shinygun:':"Haut les mains, peau de la... hey... attendez une minute !"
+
         }
 
         # Check for keywords in the message and response accordingly
