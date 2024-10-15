@@ -1,11 +1,17 @@
 import random
 import asyncio
+import time
 from discord.ext import commands
 
 # Define a Cog class for auto responses
 class AutoResponsesCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot # Storing the bot instance for later use
+
+        # Cooldown period in seconds
+        self.cooldown_duration = 20
+        # Dictionnary to store the timestamp of the last response for each user
+        self.user_cooldowns = {}
 
         # Attempt to read responses from text file
         try:
@@ -21,6 +27,20 @@ class AutoResponsesCog(commands.Cog):
         # Ignore messages from bot itself to prevent loops
         if message.author == self.bot.user:
             return
+
+        # Get current time and user's ID
+        current_time - time.time()
+        user_id - message.author.id
+
+        # Check if user is on cooldown
+        if user_id in self.user_cooldowns:
+            last_response_time = self.user_cooldowns[user_id]
+            # Ignore the message if time since last response is less than cooldown duration
+            if current_time - last_response_time < self.cooldown_duration:
+                return
+
+        self.user_cooldowns[user_id] = current_time
+
         await self.bot.process_commands(message)
 
         # Dictionnary for different automatic responses based on keywords
