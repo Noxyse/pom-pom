@@ -66,7 +66,7 @@ class AutoResponsesCog(commands.Cog):
 
         # Check for promotion of other Twitch channels
         allowed_twitch_channel = 'shinya_nia'
-        no_pub = "Il est interdit de faire de la pub pour d'autres chaînes à bord de ce train !"
+        no_pub = "Il est interdit de faire de la pub pour d'autres chaînes !"
 
         # Check if the message contains a link to Twitch
         if 'twitch.tv' in message.content.lower():
