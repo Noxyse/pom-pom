@@ -20,9 +20,15 @@ class AutoResponsesCog(commands.Cog):
                 self.responses = [line.strip() for line in file if line.strip()] 
         except FileNotFoundError:
             self.responses = ['No responses found.']
-
+    
     # Listener for incoming messages
     @commands.Cog.listener()
+    async def on_member_join(member):
+        welcome_channel = discord.utils.get(member.guild.text_channels, name='test')
+        if welcome_channel:
+            await welcome_channel.send(f"Bienvenue à bord {member.mention} ! :shinywave:")
+
+
     async def on_message(self, message):
         # Ignore messages from bot itself to prevent loops
         if message.author == self.bot.user:
