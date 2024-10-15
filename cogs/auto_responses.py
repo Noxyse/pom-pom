@@ -28,7 +28,7 @@ class AutoResponsesCog(commands.Cog):
             'bibble':'Tu le préfères à moi, pas vrai...?',
             'salut':"Bonjour {mention} !",
             'coucou':"Coucou {mention}, ça faisait longtemps !",
-            ':shinygun:':"Haut les mains, peau de la... hey... attendez une minute !"
+            ':shinygun:':"Haut les mains, peau de lap-... hey... attendez une minute !"
 
         }
 
