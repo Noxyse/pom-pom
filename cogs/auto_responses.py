@@ -25,7 +25,7 @@ class AutoResponsesCog(commands.Cog):
 
         # Dictionnary for different automatic responses based on keywords
         response_dict={
-            'bibble':'Tu le préfères à moi, pas vrai...?',
+            'bibble':"Aucun passager clandestin ne sera admis à bord de ce train !",
             'salut':"Bonjour {mention} !",
             'coucou':"Coucou {mention}, ça faisait longtemps !",
             ':shinygun:':"Haut les mains, peau de lap-... hey... attendez une minute !"
