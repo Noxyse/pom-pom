@@ -27,6 +27,7 @@ class AutoResponsesCog(commands.Cog):
         response_dict={
             'bibble':'Tu le préfères à moi, pas vrai...?',
             'salut':"Bonjour {mention} !",
+            'coucou':"Coucou {mention}, ça faisait longtemps !",
             ':shinygun:':"Haut les mains, peau de la... hey... attendez une minute !"
 
         }
