@@ -29,8 +29,8 @@ class AutoResponsesCog(commands.Cog):
             return
 
         # Get current time and user's ID
-        current_time - time.time()
-        user_id - message.author.id
+        current_time = time.time()
+        user_id = message.author.id
 
         # Check if user is on cooldown
         if user_id in self.user_cooldowns:
