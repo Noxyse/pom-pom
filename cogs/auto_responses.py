@@ -46,10 +46,11 @@ class AutoResponsesCog(commands.Cog):
         # Dictionnary for different automatic responses based on keywords
         response_dict={
             'bibble':"Aucun passager clandestin ne sera admis à bord de ce train !",
-            'coucou':"Oh, vous êtes de retour {mention} ! Pom-Pom est si heureux de vous revoir !",
-            'salut':"Salut {mention} ! De nouvelles aventures vous attendent !",
-            'bonjour':"Bonjour {mention} ! Pom-Pom vous souhaite une bonne journée !",
-            ':shinygun:':"Haut les mains, peau de lap-... hey... attendez une minute !"
+            'coucou':"Oh, tu es de retour {mention} ! Pom-Pom est si heureux de te revoir !",
+            'salut':"Salut {mention} ! De nouvelles aventures t'attendent !",
+            'bonjour':"Bonjour {mention} ! Pom-Pom te souhaite une bonne journée !",
+            ':shinygun:':"Haut les mains, peau de lap-... hey... attends une minute !",
+            'March 7th': "N'oublie pas de t'assoir si tu ne veux pas tomber. On va faire le saut !"
 
         }
 
