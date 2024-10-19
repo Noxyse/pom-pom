@@ -49,7 +49,7 @@ class AutoResponsesCog(commands.Cog):
             'coucou':"Oh, vous êtes de retour {mention} ! Pom-Pom est si heureux de vous revoir !",
             'salut':"Salut {mention} ! De nouvelles aventures vous attendent !",
             'bonjour':"Bonjour {mention} ! Pom-Pom vous souhaite une bonne journée !",
-            ':shinygun:':"Haut les mains, peau de lap-... hey... attendez une minute ! :shinypop:"
+            ':shinygun:':"Haut les mains, peau de lap-... hey... attendez une minute ! <:shinypop:1238184560500670515>"
 
         }
 
