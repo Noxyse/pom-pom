@@ -10,7 +10,7 @@ class UnifiedCog(commands.Cog):
         self.lock = asyncio.Lock()
         self.cooldown_duration = 20
         self.user_cooldowns = {}
-        self.allowed_channels = [1295483149169459311]  # Replace with your allowed channel IDs
+        self.allowed_channels = [1295483149169459311, 1236356278184448030, 1236385552698183854]  # Replace with your allowed channel IDs
 
         # Load responses from a file for auto-responses
         try:
