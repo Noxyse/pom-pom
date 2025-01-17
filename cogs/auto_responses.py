@@ -10,7 +10,7 @@ class UnifiedCog(commands.Cog):
         self.lock = asyncio.Lock()
         self.cooldown_duration = 20
         self.user_cooldowns = {}
-        self.allowed_channels = [1295483149169459311, 1236356278184448030, 1236385552698183854]  # Replace with your allowed channel IDs
+        self.allowed_channels = [1295483149169459311, 1236356278184448030, 1236385552698183854] # Replace with your allowed channel IDs
 
         # Load responses from a file for auto-responses
         try:
@@ -60,7 +60,8 @@ class UnifiedCog(commands.Cog):
             'coucou':"Oh, tu es de retour {mention} ! Pom-Pom est si heureux de te revoir !",
             'salut':"Salut {mention} ! De nouvelles aventures t'attendent !",
             'bonjour':"Bonjour {mention} ! Pom-Pom te souhaite une bonne journée !",
-            'March 7th': "N'oublie pas de t'assoir si tu ne veux pas tomber. On va faire le saut !"
+            'March 7th': "N'oublie pas de t'assoir si tu ne veux pas tomber. On va faire le saut !",
+            'stagiaires': "Sans commentaire. Ils sont aussi utiles que des glaçons sur la banquise..."
         }
 
         for keyword, response in response_dict.items():
