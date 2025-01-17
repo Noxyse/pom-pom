@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from dotenv import load_dotenv
 import os
 
 intents = discord.Intents.default()
@@ -23,6 +24,8 @@ async def load_cogs():
 @bot.event
 async def setup_hook():
     await load_cogs()
+
+load_dotenv()
 
 discord_token = os.getenv('DISCORD_TOKEN')
 
