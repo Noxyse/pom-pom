@@ -1,9 +1,13 @@
 import asyncio
 import discord
 from discord.ext import commands
+import pytz
 from datetime import datetime, timedelta
 import json
 import os
+import logging
+
+brussels_tz = pytz.timezone('Europe/Brussels')
 
 class BirthdayBot(commands.Cog):
     def __init__(self, bot):
@@ -13,11 +17,16 @@ class BirthdayBot(commands.Cog):
         self.test_mode = False  
         self.check_task = self.bot.loop.create_task(self.check_birthdays())
 
+    logging.basicConfig(level=logging.DEBUG)
+
     def load_birthdays(self):
         """Load user birthdays from a JSON file."""
+        logging.debug("Loading birthdays...")
         try:
             with open(self.data_file, "r") as f:
-                return json.load(f)
+                data = json.load(f)
+                logging.debug(f"Loaded birthdays: {data}")
+                return data
         except (FileNotFoundError, json.JSONDecodeError):
             return {}
 
@@ -27,6 +36,13 @@ class BirthdayBot(commands.Cog):
         with open(self.data_file, "w") as f:
             json.dump(self.user_birthdays, f)
 
+    def get_channel(self, channel_id):
+        """Helper function to get the channel by ID."""
+        channel = self.bot.get_channel(channel_id)
+        if not channel:
+            print(f"Channel with ID {channel_id} not found.")
+        return channel
+
     @commands.command(name="anniv")
     async def set_birthday(self, ctx, date: str):
         """Command to store a user's birthday."""
@@ -34,6 +50,7 @@ class BirthdayBot(commands.Cog):
         try:
             # Try to parse the date provided by the user
             birthday = datetime.strptime(date, "%d/%m").date()
+            print(f"Parsed birthday: {birthday}")
             self.user_birthdays[user_id] = date
             self.save_birthdays()
 
@@ -68,31 +85,43 @@ class BirthdayBot(commands.Cog):
                 await self.test_check_birthdays()
                 self.test_mode = False  # Reset test mode after check
             else:
-                current_date = datetime.now().strftime("%d/%m")
+                now = datetime.now(brussels_tz)
+
+                print(f"Current time: {now.strftime('%Y-%m-%d %H:%M:%S')}")
+
+                current_date = now.strftime("%d/%m")
                 # Specify the channel ID or fetch the channel by name
-                channel_id = 1295483149169459311  # Replace with your channel ID
-                channel = self.bot.get_channel(channel_id)
+                channel_id = 1236356278184448030  # Replace with your channel ID
+                channel = self.get_channel(channel_id)
                 
                 if not channel:
-                    print(f"Channel with ID {channel_id} not found.")
                     return
 
                 for user_id, birthday in self.user_birthdays.items():
+                    print(f"Checking user {user_id}'s birthday: {birthday} against current date: {current_date}")
                     if birthday == current_date:
-                        user = self.bot.get_user(int(user_id))
-                        if user:
-                            try:
-                                # Send the birthday message in the specified channel, mentioning the user
-                                await channel.send(f"Bon anniversaire <@{user.id}> ! 🎉")  # Mention the user
-                                print(f"Message sent to channel {channel.name}, mentioning {user.name}")
-                            except discord.errors.Forbidden:
-                                # Handle permission errors
-                                print(f"Cannot send message to channel {channel.name}. Check permissions.")
+                        try:
+                            # Send the birthday message in the specified channel, mentioning the user
+                            await channel.send(f"Joyeux anniversiare, <@{user_id}> ! Pom-Pom espère que votre journée sera remplie de bonheur stellaire, et il invite tout le monde à bord à vous souhaiter un anniversaire aussi merveilleux que les étoiles ! 🎉")  # Mention the user print(f"Message sent to channel {channel.name}.")
+                        except discord.errors.Forbidden:
+                            # Handle permission errors
+                            print(f"Cannot send message to channel {channel.name}. Check permissions.")
             
-            # Sleep until next check
-            now = datetime.now()
-            next_check = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
-            await asyncio.sleep((next_check - now).total_seconds())
+            # Calculate the next check time
+            next_check_time = now.replace(hour=0, minute=0, second=0, microsecond=0)
+
+            if now >= next_check_time:
+                next_check_time += timedelta(days=1)
+
+            print(f"Next check time: {next_check_time.strftime('%Y-%m-%d %H:%M:%S')}")
+            
+            # Calculate sleep time
+            sleep_time = (next_check_time - now).total_seconds()
+
+            print(f"Sleeping for {sleep_time} seconds until the next check.")
+
+            # Sleep until the next check
+            await asyncio.sleep(sleep_time)
 
 
     async def test_check_birthdays(self):
@@ -101,14 +130,13 @@ class BirthdayBot(commands.Cog):
         print("Starting birthday check...")
 
         # Simulated current date for testing
-        test_date = "17/01"  # Replace with today's date or any test date
+        test_date = "18/01"  # Replace with today's date or any test date
 
         # Specify the channel ID or fetch the channel by name
         channel_id = 1295483149169459311  # Replace with your channel ID
-        channel = self.bot.get_channel(channel_id)
+        channel = self.get_channel(channel_id)
         
         if not channel:
-            print(f"Channel with ID {channel_id} not found.")
             return
 
         for user_id, birthday in self.user_birthdays.items():
