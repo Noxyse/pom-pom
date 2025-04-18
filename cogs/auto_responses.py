@@ -8,7 +8,7 @@ class UnifiedCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.lock = asyncio.Lock()
-        self.cooldown_duration = 20
+        self.cooldown_duration = 1
         self.user_cooldowns = {}
         self.allowed_channels = [1295483149169459311, 1236356278184448030, 1236385552698183854] # Replace with your allowed channel IDs
 
@@ -54,22 +54,27 @@ class UnifiedCog(commands.Cog):
 
         self.user_cooldowns[user_id] = current_time
 
-        # Auto-response logic
-        response_dict = {
-            'bibble':"Aucun passager clandestin ne sera admis à bord de ce train !",
-            'coucou':"Oh, tu es de retour {mention} ! Pom-Pom est si heureux de te revoir !",
-            'salut':"Salut {mention} ! De nouvelles aventures t'attendent !",
-            'bonjour':"Bonjour {mention} ! Pom-Pom te souhaite une bonne journée !",
-            'March 7th': "N'oublie pas de t'assoir si tu ne veux pas tomber. On va faire le saut !",
-            'stagiaires': "Sans commentaire. Ils sont aussi utiles que des glaçons sur la banquise..."
-        }
+        # Load all responses from the file
+        try:
+            with open('auto_responses.txt', 'r', encoding='utf-8') as file:
+                responses = [line.strip() for line in file if line.strip()]
+        except FileNotFoundError:
+            responses = []
 
-        for keyword, response in response_dict.items():
-            if keyword in message.content.lower():
-                formatted_response = response.format(mention=message.author.mention)
-                await message.channel.send(formatted_response)
-                return
+        # Define the keywords that can trigger a response
+        keywords = ['coucou', 'salut', 'bonjour', 'yo', 'hey', 'hello']
 
+        # Check if any keyword is in the message content
+        if any(keyword in message.content.lower() for keyword in keywords):
+            # 50% chance to send a response
+            if random.random() < 0.5:
+                if responses:  # Ensure there are responses to choose from
+                    response = random.choice(responses)
+                    formatted_response = response.format(mention=message.author.mention)
+                    await message.channel.send(formatted_response)
+            return
+
+        # Handle other specific cases (e.g., "^^")
         if "^^" in message.content.lower() or "^^'" in message.content.lower():
             response = random.choice(self.responses)
             await message.channel.send(response)
