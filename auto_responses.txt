@@ -8,3 +8,4 @@ Les étoiles brillent pour toi aujourd’hui, {mention} !
 Hey {mention} ! Le soleil salue ta présence !
 Grasse mat’, hein {mention} ? Pom-Pom ne te juge pas (trop)...
 Faut aller faire le ménage dans l'Astral Express, {mention} ! C'est ton tour de corvée !
+Tu es ma personne préférée à bord, {mention}. Mais ne le répète pas aux autres !
