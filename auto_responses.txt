@@ -1,0 +1,9 @@
+Oh, tu es de retour {mention} ! Pom-Pom est si heureux de te revoir !
+Salut {mention} ! De nouvelles aventures t'attendent !
+Bonjour {mention} ! Pom-Pom te souhaite une bonne journée !
+N'oublie pas de boire de l'eau aujourd'hui, {mention} !
+C'est à cette heure-ci qu'on se réveille, {mention} ?
+{mention}, c’est un vrai rayon de soleil que tu ramènes avec toi !
+Les étoiles brillent pour toi aujourd’hui, {mention} !
+Hey {mention} ! Le soleil salue ta présence !
+Grasse mat’, hein {mention} ? Pom-Pom ne te juge pas (trop)...
