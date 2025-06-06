@@ -102,7 +102,7 @@ class BirthdayBot(commands.Cog):
                     if birthday == current_date:
                         try:
                             # Send the birthday message in the specified channel, mentioning the user
-                            await channel.send(f"Joyeux anniversaire, <@{user_id}> ! Pom-Pom espère que votre journée sera remplie de bonheur stellaire, et il invite tout le monde à bord à vous souhaiter un anniversaire aussi merveilleux que les étoiles ! 🎉")  # Mention the user print(f"Message sent to channel {channel.name}.")
+                            await channel.send(f"Joyeux anniversaire, <@{user_id}> ! Pom-Pom espère que ta journée sera remplie de bonheur stellaire, et il invite tout le monde à bord à te souhaiter un anniversaire aussi merveilleux que les étoiles ! 🎉")  # Mention the user print(f"Message sent to channel {channel.name}.")
                         except discord.errors.Forbidden:
                             # Handle permission errors
                             print(f"Cannot send message to channel {channel.name}. Check permissions.")
