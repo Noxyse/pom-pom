@@ -7,3 +7,4 @@ C'est à cette heure-ci qu'on se réveille, {mention} ?
 Les étoiles brillent pour toi aujourd’hui, {mention} !
 Hey {mention} ! Le soleil salue ta présence !
 Grasse mat’, hein {mention} ? Pom-Pom ne te juge pas (trop)...
+Faut aller faire le ménage dans l'Astral Express, {mention} ! C'est ton tour de corvée !
