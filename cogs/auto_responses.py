@@ -76,8 +76,10 @@ class UnifiedCog(commands.Cog):
 
         # Handle other specific cases (e.g., "^^")
         if "^^" in message.content.lower() or "^^'" in message.content.lower():
-            response = random.choice(self.responses)
-            await message.channel.send(response)
+            # 50% chance to send a response
+            if random.random() < 0.5:
+                response = random.choice(self.responses)
+                await message.channel.send(response)
 
         allowed_twitch_channel = 'shinya_nia'
         no_pub = "Il est interdit de faire de la pub pour d'autres chaînes !"
