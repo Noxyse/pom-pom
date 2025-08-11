@@ -108,7 +108,7 @@ class BirthdayBot(commands.Cog):
                             print(f"Cannot send message to channel {channel.name}. Check permissions.")
             
             # Calculate the next check time
-            next_check_time = now.replace(hour=0, minute=0, second=0, microsecond=0)
+            next_check_time = now.replace(hour=7, minute=0, second=0, microsecond=0)
 
             if now >= next_check_time:
                 next_check_time += timedelta(days=1)
