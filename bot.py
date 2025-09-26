@@ -5,6 +5,9 @@ import os
 
 intents = discord.Intents.default()
 intents.message_content = True # Reading messages
+intents.reactions = True # Reading reactions
+intents.guilds = True # Reading guilds
+
 bot = commands.Bot(command_prefix='!', intents=intents) # Creating bot intent
 
 @bot.event
