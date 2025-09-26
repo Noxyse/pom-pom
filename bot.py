@@ -28,6 +28,17 @@ async def load_cogs():
 async def setup_hook():
     await load_cogs()
 
+@bot.command()
+@commands.is_owner()
+async def sync(ctx):
+    try:
+        synced = await bot.tree.sync()
+        await ctx.send(f'Synced {len(synced)} commands.')
+        print(f'Synced {len(synced)} commands.')
+    except Exception as e:
+        await ctx.send(f'Error syncing commands: {e}')
+        print(f'Error syncing commands: {e}')
+
 load_dotenv()
 
 discord_token = os.getenv('DISCORD_TOKEN')
