@@ -77,7 +77,7 @@ class UnifiedCog(commands.Cog):
         # Handle other specific cases (e.g., "^^")
         if "^^" in message.content.lower() or "^^'" in message.content.lower():
             # 50% chance to send a response
-            if random.random() < 0.5:
+            if random.random() < 0.1:
                 response = random.choice(self.responses)
                 await message.channel.send(response)
 
