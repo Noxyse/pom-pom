@@ -62,7 +62,7 @@ class UnifiedCog(commands.Cog):
             responses = []
 
         # Define the keywords that can trigger a response
-        keywords = ['coucou', 'salut', 'bonjour', 'hey', 'hello']
+        keywords = ['coucou', 'salut', 'bonjour', 'hello']
 
         # Check if any keyword is in the message content
         if any(keyword in message.content.lower() for keyword in keywords):
